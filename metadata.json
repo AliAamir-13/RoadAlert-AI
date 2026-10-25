@@ -1,0 +1,6 @@
+{
+  "name": "RoadAlert AI",
+  "description": "AI-Powered Civic Issue Reporting application analyzing road hazards and generating formal complaint letters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
