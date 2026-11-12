@@ -2,6 +2,8 @@ import base64
 import datetime
 import io
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import re
 from typing import Optional
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -14,7 +16,10 @@ from google.genai import types
 from PIL import Image
 
 # Hardcoded API key variable as required (falls back to environment variable if set)
-API_KEY = os.environ.get("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
+
+if not API_KEY:
+    raise ValueError("Environment variable 'GEMINI_API_KEY' is not set")
 
 app = FastAPI(
     title="RoadAlert AI Backend",
@@ -290,7 +295,7 @@ async def analyze_civic_issue(
 Please inspect the attached photograph thoroughly and generate the structured civic assessment following the required template."""
 
     gemini_key = API_KEY or os.environ.get("GEMINI_API_KEY", "")
-    if not gemini_key or gemini_key == "YOUR_GEMINI_API_KEY_HERE":
+    if not gemini_key :
         raise HTTPException(
             status_code=500,
             detail="GEMINI_API_KEY is not configured on the server. Please ensure the API key is set."
@@ -307,7 +312,7 @@ Please inspect the attached photograph thoroughly and generate the structured ci
 
         # Call Gemini model (gemini-2.0-flash or gemini-2.5-flash)
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-3.5-flash",
             contents=[image_part, user_prompt],
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_INSTRUCTION,

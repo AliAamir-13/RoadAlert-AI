@@ -6,3 +6,10 @@ coverage/
 *.log
 .env*
 !.env.example
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.DS_Store?

@@ -45,7 +45,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [copied, setCopied] = useState(false);
-  const [backendEndpoint, setBackendEndpoint] = useState<string>('/analyze');
+  const [backendEndpoint, setBackendEndpoint] = useState<string>('http://localhost:8000/analyze');
   const [isDetectingGps, setIsDetectingGps] = useState(false);
   const [loadingStep, setLoadingStep] = useState<string>('Initializing vision inspection...');
 
@@ -562,11 +562,10 @@ Concerned Resident / RoadAlert AI Citizen Grievance Portal`;
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[220px] ${
-                      isDragging
+                    className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[220px] ${isDragging
                         ? 'border-[#D62B2B] bg-red-50/50 scale-[1.01]'
                         : 'border-slate-300 hover:border-[#D62B2B] hover:bg-slate-50/80 bg-white'
-                    }`}
+                      }`}
                   >
                     <div className="w-14 h-14 rounded-full bg-red-50 text-[#D62B2B] flex items-center justify-center mb-3 shadow-inner">
                       <Upload className="w-6 h-6" />
@@ -629,11 +628,10 @@ Concerned Resident / RoadAlert AI Citizen Grievance Portal`;
               <button
                 type="submit"
                 disabled={isLoading || !imageFile}
-                className={`w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-sm text-white shadow-md transition-all flex items-center justify-center gap-2.5 ${
-                  isLoading || !imageFile
+                className={`w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-sm text-white shadow-md transition-all flex items-center justify-center gap-2.5 ${isLoading || !imageFile
                     ? 'bg-slate-300 text-slate-500 cursor-not-allowed shadow-none'
                     : 'bg-[#D62B2B] hover:bg-[#b82222] active:scale-[0.99] hover:shadow-lg'
-                }`}
+                  }`}
               >
                 {isLoading ? (
                   <>
@@ -709,9 +707,8 @@ Concerned Resident / RoadAlert AI Citizen Grievance Portal`;
             <div className="p-6 sm:p-8 space-y-7">
               {/* LARGE DANGER LEVEL BADGE & REASON */}
               <div
-                className={`p-5 rounded-xl border ${
-                  dangerStyle?.border || 'border-slate-200'
-                } ${dangerStyle?.bg || 'bg-slate-50'} transition-all`}
+                className={`p-5 rounded-xl border ${dangerStyle?.border || 'border-slate-200'
+                  } ${dangerStyle?.bg || 'bg-slate-50'} transition-all`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -719,9 +716,8 @@ Concerned Resident / RoadAlert AI Citizen Grievance Portal`;
                       Severity Risk Level:
                     </span>
                     <div
-                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border font-black text-sm tracking-wide ${
-                        dangerStyle?.bg
-                      } ${dangerStyle?.text} ${dangerStyle?.border}`}
+                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border font-black text-sm tracking-wide ${dangerStyle?.bg
+                        } ${dangerStyle?.text} ${dangerStyle?.border}`}
                     >
                       <span className={`w-2.5 h-2.5 rounded-full ${dangerStyle?.dot}`}></span>
                       <span>{result.danger_level.toUpperCase()} HAZARD</span>
